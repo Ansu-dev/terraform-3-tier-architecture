@@ -51,3 +51,12 @@ module "s3" {
   bucket_name = "my-unique-bucket-name-gs" # unique한 이름
   acl = "private"
 }
+
+module "rds" {
+  source = "./modules/rds"
+  db_name = "mydatabase"
+  username = "postgres"
+  password = "test1234"
+  vpc_security_group_ids = [module.security_group.security_group_id]
+  subnet_ids = module.subnet.private_subnet_ids
+}
