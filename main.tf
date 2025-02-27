@@ -16,6 +16,7 @@ provider "aws" {
 # vpc 모듈 생성
 module "vpc" {
   source = "./modules/vpc" # VPC 모듈 소스 경로
+  nat_instance_network_interface_id = module.ec2.nat_instance_network_interface_id # EC2 모듈에서 NAT인터페이스 ID 가져오기
 }
 
 # subnet 모듈 생성
@@ -23,6 +24,7 @@ module "subnet" {
   source = "./modules/subnet"
   vpc_id = module.vpc.vpc_id # vpc의 라우트 테이블 정보가 필요하므로 vpc 모듈에서 아웃풋으로 해당 정보를 가져옴
   route_table_id = module.vpc.route_table_id
+  route_table_id_1 = module.vpc.route_table_id_1
 }
 
 module "security_group" {

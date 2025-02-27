@@ -27,3 +27,18 @@ resource "aws_route_table" "main_rt" {
     Name = "my-route-table"
   }
 }
+
+
+resource "aws_route_table" "main1_rc" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  tags = {
+    Name = "my-route-table-nat"
+  }
+}
+
+resource "aws_route" "nat" {
+  route_table_id = aws_route_table.main1_rc.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id = var.nat_instance_network_interface_id
+}

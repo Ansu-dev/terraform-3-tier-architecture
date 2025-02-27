@@ -57,3 +57,14 @@ resource "aws_route_table_association" "public-2" {
   route_table_id = var.route_table_id
 }
 
+# private subnet1과 라우트 테이블에 연결
+resource "aws_route_table_association" "private-1" {
+  subnet_id = aws_subnet.private-1.id
+  route_table_id = var.route_table_id_1
+}
+
+# private subnet2과 라우트 테이블에 연결
+resource "aws_route_table_association" "private-2" {
+  subnet_id = aws_subnet.private-2.id
+  route_table_id = var.route_table_id_1
+}
