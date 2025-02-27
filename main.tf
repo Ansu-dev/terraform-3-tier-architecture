@@ -60,3 +60,15 @@ module "rds" {
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_ids = module.subnet.private_subnet_ids
 }
+
+
+module "alb" {
+  source = "./modules/alb"
+  vpc_id = module.vpc.vpc_id
+  subnet_ids = module.subnet.public_subnet_ids
+  security_group_ids = [module.security_group.security_group_id]
+  target_instance_ids = [
+    module.ec2.web1.id,
+    module.ec2.web2.id
+  ]
+}
