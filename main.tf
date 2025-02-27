@@ -44,3 +44,10 @@ module "ec2" {
   private_subnet_ids = module.subnet.private_subnet_ids
   key_name = module.key_pair.key_name
 }
+
+
+module "s3" {
+  source = "./modules/s3"
+  bucket_name = "my-unique-bucket-name-gs" # unique한 이름
+  acl = "private"
+}
