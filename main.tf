@@ -75,4 +75,14 @@ module "alb" {
 
 module "auto_scaling" {
   source = "./modules/auto-scaling"
+  private_subnet_ids = module.subnet.private_subnet_ids
+  web1_launch_template_id = module.launch_template.web1_launch_template_id
+  aws_lb_target_group = module.alb.aws_lb_target_group
+}
+
+module "launch_template" {
+  source = "./modules/launch-template"
+  key_name = module.key_pair.key_name
+  instance_type = "t2.micro"
+  source_instance_id = module.ec2.web1.id
 }
