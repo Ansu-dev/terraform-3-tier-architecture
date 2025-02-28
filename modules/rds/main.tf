@@ -7,6 +7,7 @@ resource "aws_db_instance" "database" {
   password          = var.password
   vpc_security_group_ids = var.vpc_security_group_ids
   db_subnet_group_name = aws_db_subnet_group.database_subnet.name
+  skip_final_snapshot = true
 }
 
 resource "aws_db_subnet_group" "database_subnet" {
