@@ -72,3 +72,7 @@ module "alb" {
     module.ec2.web2.id
   ]
 }
+
+module "auto_scaling" {
+  source = "./modules/auto-scaling"
+}

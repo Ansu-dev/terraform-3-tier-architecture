@@ -23,10 +23,10 @@ resource "aws_lb_target_group" "alb_target_group" {
     healthy_threshold = 2
     unhealthy_threshold = 2
   }
-  # stickiness { # 세션 관리
-  #   type = "lb_cookie"
-  #   cookie_duration = 86400 # 1day in seconds
-  # }
+  stickiness { # 세션 관리
+    type = "lb_cookie"
+    cookie_duration = 86400 # 1day in seconds
+  }
 }
 
 
